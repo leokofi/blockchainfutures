@@ -10,7 +10,6 @@ contract UportRegistry {
     version = 1;
   }
 
-
   function setAttributes(address personaAddress, bytes ipfsHash) {
     ipfsAttributeLookup[personaAddress] = ipfsHash;
     AttributesSet(personaAddress, now);
