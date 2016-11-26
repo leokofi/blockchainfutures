@@ -1,0 +1,22 @@
+'use strict';
+
+var isStream = require('isstream');
+var addToDagNodesTransform = require('../add-to-dagnode-transform');
+var promisify = require('promisify-es6');
+
+module.exports = function (send) {
+  return promisify(function (files, callback) {
+    var good = Buffer.isBuffer(files) || isStream.isReadable(files) || Array.isArray(files);
+
+    if (!good) {
+      callback(new Error('"files" must be a buffer, readable stream, or array of objects'));
+    }
+
+    var sendWithTransform = send.withTransform(addToDagNodesTransform);
+
+    return sendWithTransform({
+      path: 'add',
+      files: files
+    }, callback);
+  });
+};
