@@ -50,15 +50,15 @@ contract FirmRegistration is owned {
   // event logs
   event logRegisterFirm(address indexed name, bool status );
 
- // function registerFirm(address addr, string _name, uint _telephone, bytes32 _physicaladdress, string _reg_category, string _reg_category2, bool _approved, bool _stat ) onlyowner returns (bool) {
-  function registerFirm(address addr, string _name, uint _telephone, bool _approved, bool _stat) onlyowner returns (bool)
+  function registerFirm(address addr, string _name, uint _telephone, bytes32 _physicaladdress, string _reg_category, string _reg_category2, bool _approved, bool _stat ) onlyowner returns (bool) {
+  //function registerFirm(address addr, string _name, uint _telephone, bool _approved, bool _stat) onlyowner returns (bool)
     names[addr] = FirmRegister({
       name: _name,
       telephone: _telephone,
-     // pubAddress: addr,
-     // physicalAddress: _physicaladdress,
-     // category: _reg_category,
-     // category2: _reg_category2
+      pubAddress: addr,
+      physicalAddress: _physicaladdress,
+      category: _reg_category,
+      category2: _reg_category2
 
     });
 
@@ -73,4 +73,4 @@ contract FirmRegistration is owned {
   }
 
 }
-http://icarus.parity.io/rain/0x1FFC752D4c9d5359BffaC383e9cb737b63440087
+
