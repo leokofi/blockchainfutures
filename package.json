@@ -7,11 +7,17 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "registration" : "watchify ./lib/registration.js -o dist/registration.bundle.js",
+    "osc" : "watchify ./lib/osc.js -o dist/osc.bundle.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leokofi/blockchainfutures.git"
+  },
+  "devDependencies": {
+   "browserify": "^13.1.0",
+   "watchify": "^3.7.0"
   },
   "dependencies": {
     "async": "^2.1.2",
@@ -29,10 +35,10 @@
     "ipfs-api": "^9.0.0",
     "jquery": "^3.1.0",
     "underscore": "^1.8.3",
-    "uport-persona": "git://github.com/subramanianv/uport-persona.git",
-    "web3": "^0.17.0-alpha"
+    "web3": "^0.17.0-alpha",
+    "uport-persona" :  "git://github.com/subramanianv/uport-persona.git#hack"
 },
-  "author": "",
+"author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/leokofi/blockchainfutures/issues"
