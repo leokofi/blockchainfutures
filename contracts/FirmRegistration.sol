@@ -38,7 +38,7 @@ contract FirmRegistration is owned {
   }
 
   struct FirmStatus {
-    bool suppended;
+    bool suspend;
     bool approved;
   }
 
@@ -63,7 +63,7 @@ contract FirmRegistration is owned {
     });
 
     status[addr] = FirmStatus ({
-      suppended: _stat,
+      suspend: _stat,
       approved: _approved
     });
 
@@ -72,6 +72,29 @@ contract FirmRegistration is owned {
 
     return true;
     
+  }
+    function suspendFirm(address addr, bool _stat) onlyowner returns (bool) {
+        FirmStatus s = status[addr];
+        s.suspend = _stat;
+ 
+    }
+
+    function unapproveFirm(address addr, bool _stat) onlyowner returns (bool) {
+        FirmStatus a = status[addr];
+        a.approved = _stat;
+    }
+
+    function getRegisteredFirmInfo(address addr) constant returns (string _name){
+        FirmRegister f = names[addr];
+      return f.name;
+
+  }
+
+  function getFirmStatus(address addr) constant returns (bool, bool) {
+    FirmStatus s = status[addr];
+    FirmStatus a = status[addr];
+
+    return (s.suspend, a.approved);
   }
 
 }
