@@ -69,8 +69,9 @@ contract FirmRegistration is owned {
 
 
     logRegisterFirm(addr, status[addr].approved );
+
+    return true;
     
   }
 
 }
-
