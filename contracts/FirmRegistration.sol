@@ -12,7 +12,8 @@ contract owned{
   }
 
   modifier onlyowner() {
-    if(msg.sender==owner) _;
+    if(msg.sender==owner) 
+    _;
 
   }
 
@@ -26,6 +27,22 @@ mapping (address => FirmRegister) name;
 
 struct FirmRegister {
   string name;
+  uint telephone;
+  address pubAddress;
+  string category;
+  string category2;
+  
+}
+
+struct FirmStatus {
+  bool suppended;
+  bool approved;
+}
+
+// event logs
+event logReisterFirm(address addr );
+
+function registerFirm(address addr) onlyowner (bool) {
   
 }
 
