@@ -74,4 +74,8 @@ contract FirmRegistration is owned {
     
   }
 
+  function getRegisteredFirmInfo(address addr) constant returns (FirmRegister){
+    return names[addr];
+  }
+
 }
