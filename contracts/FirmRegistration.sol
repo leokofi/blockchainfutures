@@ -42,7 +42,7 @@ struct FirmStatus {
 // event logs
 event logReisterFirm(address addr,  );
 
-function registerFirm(address addr) onlyowner (bool) {
+function registerFirm(address addr) onlyowner returns (bool) {
   
 }
 
