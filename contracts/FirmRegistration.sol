@@ -12,7 +12,8 @@ contract owned{
   }
 
   modifier onlyowner() {
-    if(msg.sender==owner) _
+    if(msg.sender==owner) _;
+
   }
 
   address public owner;
@@ -22,5 +23,10 @@ contract owned{
 contract FirmRegistration is owned {
 
 mapping (address => FirmRegister) name;
+
+struct FirmRegister {
+  string name;
+  
+}
 
 }
