@@ -16,5 +16,10 @@
 		"password" : "mypass",
 		"salt" : "swag",
 		"address" : "0x0ab89a27b937a0a1797057ca415bcec6edf323e5"
+	},
+	"broker" : {
+		"seed" : "depend book demand poem acoustic purpose warfare bubble gold vicious prevent enemy",
+		"password" : "mypass",
+		"salt" : "swag"
 	}
 }
