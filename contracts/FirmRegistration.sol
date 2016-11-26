@@ -1,82 +1,81 @@
-pragma solidity ^0.4.2;
+pragma solidity ^0.4.4;
 // http://www.osc.gov.on.ca/en/Dealers_who-needs-register_index.htm
 
 // The default owned contract
-contract owned{
-  function owned() {
-    owner = msg.sender;
-  }
+contract owned {
+    function owned () {
+        owner = msg.sender;
+    }
 
-  function newowner(address addr) onlyowner {
-    owner = addr;
-  }
+    function newowner (address addr) onlyowner {
+        owner = addr;
+    }
 
-  modifier onlyowner() {
-    if(msg.sender==owner) 
-    _;
+    modifier onlyowner () {
+        if (msg.sender == owner) _;
+    }
 
-  }
-
-  address public owner;
+    address public owner;
 }
 
 // contract for broker registeration
 contract FirmRegistration is owned {
+    mapping (address => FirmRegister) names;
+    mapping (address => FirmStatus) status;
+    //mapping ()
+    struct FirmRegister {
+        string name;
+        uint telephone;
+        address pubAddress;
+        bytes32 physicalAddress;
+        string category;
+        string category2;
+    }
 
-  mapping (address => FirmRegister) names;
-  mapping (address => FirmStatus) status;
-  //mapping ()
+    struct FirmStatus {
+        bool suspend;
+        bool approved;
+    }
 
-  struct FirmRegister {
-    string name;
-    uint telephone;
-    address pubAddress;
-    bytes32 physicalAddress;
-    string category;
-    string category2;
-    
-  }
+    struct DealAddress {
+        mapping (address => uint) contractIDs;
+        string dealtype;
+    }
+    // event logs
+    event logRegisterFirm (address indexed name, bool status );
 
-  struct FirmStatus {
-    bool suspend;
-    bool approved;
-  }
+    function registerFirm (
+        address addr,
+        string _name,
+        uint _telephone,
+        bytes32 _physicaladdress,
+        string _reg_category,
+        string _reg_category2,
+        bool _approved,
+        bool _stat
+    ) onlyowner returns (bool) {
+        //function registerFirm(address addr, string _name, uint _telephone, bool _approved, bool _stat) onlyowner returns (bool)
+        names[addr] = FirmRegister({
+            name: _name,
+            telephone: _telephone,
+            pubAddress: addr,
+            physicalAddress: _physicaladdress,
+            category: _reg_category,
+            category2: _reg_category2
+        });
 
-  struct  DealAddress{
-    mapping (address => uint) contractIDs;
-    string dealtype;
-  }
+        status[addr] = FirmStatus ({
+            suspend: _stat,
+            approved: _approved
+        });
 
-  // event logs
-  event logRegisterFirm(address indexed name, bool status );
+        logRegisterFirm(addr, status[addr].approved );
+        return true;
+    }
 
-  function registerFirm(address addr, string _name, uint _telephone, bytes32 _physicaladdress, string _reg_category, string _reg_category2, bool _approved, bool _stat ) onlyowner returns (bool) {
-  //function registerFirm(address addr, string _name, uint _telephone, bool _approved, bool _stat) onlyowner returns (bool)
-    names[addr] = FirmRegister({
-      name: _name,
-      telephone: _telephone,
-      pubAddress: addr,
-      physicalAddress: _physicaladdress,
-      category: _reg_category,
-      category2: _reg_category2
-
-    });
-
-    status[addr] = FirmStatus ({
-      suspend: _stat,
-      approved: _approved
-    });
-
-
-    logRegisterFirm(addr, status[addr].approved );
-
-    return true;
-    
-  }
     function suspendFirm(address addr, bool _stat) onlyowner returns (bool) {
         FirmStatus s = status[addr];
         s.suspend = _stat;
- 
     }
 
     function unapproveFirm(address addr, bool _stat) onlyowner returns (bool) {
@@ -86,15 +85,12 @@ contract FirmRegistration is owned {
 
     function getRegisteredFirmInfo(address addr) constant returns (string _name){
         FirmRegister f = names[addr];
-      return f.name;
+        return f.name;
+    }
 
-  }
-
-  function getFirmStatus(address addr) constant returns (bool, bool) {
-    FirmStatus s = status[addr];
-    FirmStatus a = status[addr];
-
-    return (s.suspend, a.approved);
-  }
-
+    function getFirmStatus(address addr) constant returns (bool, bool) {
+        FirmStatus s = status[addr];
+        FirmStatus a = status[addr];
+        return (s.suspend, a.approved);
+    }
 }
