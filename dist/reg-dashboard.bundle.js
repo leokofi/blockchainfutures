@@ -38005,7 +38005,8 @@ module.exports={
 	"broker" : {
 		"seed" : "depend book demand poem acoustic purpose warfare bubble gold vicious prevent enemy",
 		"password" : "mypass",
-		"salt" : "swag"
+		"salt" : "swag",
+		"address" : "0x610b4daa8b4653fc5533231924f45adf33dc328a"
 	}
 }
 
