@@ -1,0 +1,66 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="http://npmcdn.com/ipfs-api/dist/index.js"></script>
+    <title>Foundation | Welcome</title>
+    <link rel="stylesheet" href="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <script src="codemirror/codemirror.js"></script>
+    <script src = "../dist/brokerinterface.bundle.js"></script>
+
+    <link rel="stylesheet" href="codemirror/codemirror.css">
+  </head>
+  <body>
+
+    <!-- Start Top Bar -->
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <li class="menu-text">Broker Interface</li>
+        </ul>
+      </div>
+    </div>
+    <!-- End Top Bar -->
+
+    <div class="callout large primary">
+      <div class="row column text-center">
+        <h1>Broker's Address</h1><br/>
+        <h3 id ="eth_address">Eth Address</h3>
+      </div>
+    </div>
+
+    <div class="row" id="content">
+        <div class="large-6 left column">
+            <h3>Contract Code</h3>
+        </div>
+        <div class="large-6 left column">
+            <h1>&nbsp;</h1>
+        </div>
+    </div>
+    <div class="row" id="content">
+        <div class="large-12 left column" id = "contract_code">
+        </div>
+    </div>
+    <form>
+        <div class="row">
+            <div class="large-3 left column" id = "contract_code">
+                <a id = "deploy" href="#" class="button bold">Deploy</a>
+            </div>
+            <div class="large-9 column" id="deploy_message">
+            </div>
+        </div>
+    </form>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+    <script src="codemirror/codemirror.js"></script>
+    <link href = "codemirror/codemirror.css"></script>
+    <script>
+      $(document).foundation();
+      var myCodeMirror = CodeMirror(document.getElementById('contract_code'), {
+          value: "function myScript(){return 100;}\n",
+          mode:  "javascript"
+      });
+    </script>
+  </body>
+</html>

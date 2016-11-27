@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "registration" : "watchify ./lib/registration.js -o dist/registration.bundle.js",
-    "osc" : "watchify ./lib/osc.js -o dist/osc.bundle.js"
+    "osc" : "watchify ./lib/osc.js -o dist/osc.bundle.js",
+    "broker" : "watchify ./lib/brokerinterface.js -o  dist/brokerinterface.bundle.js"
   },
   "repository": {
     "type": "git",
